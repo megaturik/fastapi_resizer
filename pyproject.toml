@@ -1,0 +1,20 @@
+[project]
+name = "globaldrive-resizer"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "avif>=0.5.0",
+    "cachetools>=6.1.0",
+    "fastapi[standard]>=0.115.13",
+    "httpx>=0.28.1",
+    "pillow>=11.2.1",
+    "pillow-avif-plugin>=1.5.2",
+    "pydantic-settings>=2.10.1",
+]
+[tool.ruff]
+line-length = 79
+target-version = "py39"
+exclude = ["venv", "__pycache__", ".git", "tests"]
+fix = true

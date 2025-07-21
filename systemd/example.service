@@ -1,0 +1,13 @@
+[Unit]
+Description=fastapi resizer service
+After=network.target 
+
+[Service]
+User=globaldrive 
+WorkingDirectory=/var/www/fastapi_resizer/app/
+ExecStart=/var/www/fastapi_resizer/.venv/bin/uvicorn main:app --host 127.0.0.1 --port 8000
+Restart=always
+Environment="LD_PRELOAD=/usr/lib64/libjemalloc.so.1" 
+
+[Install]
+WantedBy=multi-user.target
