@@ -95,7 +95,7 @@ class ImageService:
         """Saves the image to the specified file."""
         logger.info(
             f"[{self.REQUEST_ID}] "
-            f"Сохраняем: url={self.img_url}, filename={filename}"
+            f"Saving file: url={self.img_url}, filename={filename}"
         )
         Path(filename).parent.mkdir(parents=True, exist_ok=True)
         with open(filename, "wb") as f:
