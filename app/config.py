@@ -13,6 +13,8 @@ class Settings(BaseSettings):
     RESIZE_DIR: Optional[Path] = Field(default=None, env="RESIZE_DIR")
     MAX_IMAGE_SIZE: int = Field(..., env="MAX_IMAGE_SIZE")
     QUALITY: int = Field(..., env="QUALITY")
+    IMAGE_REQUEST_TIMEOUT: int = Field(
+        default=5, env="IMAGE_REQUEST_TIMEOUT")
     ORIGIN_URL: HttpUrl = Field(..., env="ORIGIN")
     MODE: Literal["stream", "cache"]
 

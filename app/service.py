@@ -45,6 +45,7 @@ class ImageService:
     MAX_IMAGE_SIZE = settings.MAX_IMAGE_SIZE
     RESIZE_DIR = settings.RESIZE_DIR
     QUALITY = settings.QUALITY
+    IMAGE_REQUEST_TIMEOUT = settings.IMAGE_REQUEST_TIMEOUT
     ORIGIN_URL = settings.ORIGIN_URL
 
     def __init__(self, request: Request, img_url: str, width: int):
@@ -178,9 +179,10 @@ class ImageService:
         raises exceptions if necessary.
         """
         download_url = self.get_download_url()
-        logger.info(f"[{self.REQUEST_ID}] Загружаем: url={download_url}")
+        logger.info(f"[{self.REQUEST_ID}] Downloading: url={download_url}")
         try:
-            with httpx.Client(verify=False) as client:
+            with httpx.Client() as client:
+                client.timeout = self.IMAGE_REQUEST_TIMEOUT
                 with client.stream("GET", download_url) as response:
                     if response.status_code >= 400:
                         response.read()
